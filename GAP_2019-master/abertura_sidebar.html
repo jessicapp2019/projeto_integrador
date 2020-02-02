@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var url = window.location.href.split("/"); // Pega a URL e separa, em elementos de array, cada pedaço que tenha "/" (não incluindo-o)
+        var link = url[url.length - 1]; // cria uma variável pegando o último elemento do array criado na variável url
+
+        function openMenu(menu) { // função recebe como parâmetro ID do menu
+            var as = document.getElementById(menu).getElementsByTagName('a'); // pega todos os <a> do menu
+            for (var i = 0; i < as.length; i++) { // faz um loop neles
+                var a = as.item(i); // cria uma variável com o <a> que o loop está
+                var href = a.href.split("/"); // pega o atributo href dele e faz o mesmo que foi feito na variável url
+                var hrefL = href[href.length - 1]; // faz o mesmo que foi feito na variável link
+                if (hrefL == link) { // verifica se o href do <a> é igual ao trecho retirado da url
+                    var ul = a.parentNode.parentNode; // pega o <ul> através de .parentNode
+                    if (ul.nodeName == "UL") // vê se a variável acima criada tem nome "UL"
+                        ul.style.display = "block"; // se tiver, deixa ele com display:block
+                } // fecha if
+            } // fecha loop for 
+        } // fecha função
+        window.onload = function() { // ao documento ser carregado
+            openMenu('mainnav'); // executa esse função
+        }; // fecha window.onload
+    </script>
+    <style type="text/css">
+        li {
+            list-style: none;
+            float: left;
+        }
+        
+        a {
+            padding: 0 5px;
+            background: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="mainnav">
+        <li><a href="index.php">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+        <li><a href="#">Link 4</a></li>
+    </ul>
+</body>
+
+</html>
